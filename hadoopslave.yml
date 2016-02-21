@@ -1,0 +1,10 @@
+---
+- name: Install hadoop on slave 
+  hosts: hadoopslave
+  remote_user: root
+  sudo: True
+
+  roles:
+    - java
+    - hadoop_slave
+

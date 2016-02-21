@@ -1,0 +1,7 @@
+---
+ hostname_master: hadoopmaster
+ hostname_slave: hadoopslave
+ hadoop_user: root
+ hadoop_group: root
+ hadoopmaster_ip: 192.168.1.78
+ hadoopslave_ip: 192.168.1.79

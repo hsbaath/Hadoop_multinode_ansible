@@ -1,0 +1,9 @@
+---
+- name: Install hadoop on master 
+  hosts: hadoopmaster
+  remote_user: root
+  sudo: yes
+
+  roles:
+    - java
+    - hadoop_master

@@ -1,4 +1,6 @@
 ---
+ - include: hosts.yml
+
  - name: download hadoop-2.6.0.tar.gz
    command: wget http://mirrors.sonic.net/apache/hadoop/common/hadoop-2.6.0/hadoop-2.6.0.tar.gz dest=/usr/local/hadoop-2.6.0.tar.gz    creates=/usr/local/hadoop-2.6.0.tar.gz
  
@@ -21,7 +23,7 @@
    template: src=yarn-site.xml dest=/usr/local/hadoop-2.6.0/etc/hadoop
 
  - name: copy the bashprofile template
-   template: src=bashprofile dest=/home/{{ hadoop_user }}/.bash_profile
+   template: src=bashprofile dest=/{{ hadoop_user }}/.bash_profile
 
  - name: copy the masters template file
    template: src=masters dest=/usr/local/hadoop-2.6.0/etc/hadoop owner={{ hadoop_user }} group={{ hadoop_group }}

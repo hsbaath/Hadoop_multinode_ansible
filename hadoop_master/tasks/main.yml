@@ -1,4 +1,6 @@
 ---
+ - include: hosts.yml
+
  - name: download hadoop-2.6.0.tar.gz
    command: wget http://mirrors.sonic.net/apache/hadoop/common/hadoop-2.6.0/hadoop-2.6.0.tar.gz dest=/usr/local/hadoop-2.6.0.tar.gz    creates=/usr/local/hadoop-2.6.0.tar.gz
  
@@ -24,7 +26,7 @@
    template: src=slaves dest=/usr/local/hadoop-2.6.0/etc/hadoop
 
  - name: copy the bashprofile template
-   template: src=bashprofile dest=/home/{{ hadoop_user }}/.bash_profile
+   template: src=bashprofile dest=/{{ hadoop_user }}/.bash_profile
 
  - name: Creates directory
    file: path=/app/hadoop/tmp state=directory owner={{ hadoop_user }} group={{ hadoop_group }} mode=0777 recurse=yes
@@ -45,5 +47,5 @@
    file: state=directory path=/usr/local/hadoop_store/hdfs/namenode owner={{ hadoop_user }} group={{ hadoop_group }} recurse=yes
 
  - name: Fix hosts entry
-   replace: dest=/etc/hosts regexp='127.0.1.1' replace='#127.0.1.1'
+   lineinfile: dest=/etc/hosts regexp='127.0.1.1' state=absent
 
